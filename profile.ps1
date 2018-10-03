@@ -20,4 +20,4 @@ function GetEC2InstanceByName($InstanceNameFilter) {
         }
     }
     return $InstancesObject | sort-object InstanceName
-  }
+}
