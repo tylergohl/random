@@ -11,11 +11,13 @@ function GetEC2InstanceByName($InstanceNameFilter) {
     
     ForEach ($Instance in $Instances) {    
         $InstanceName = $Instance.tags | where-object key -eq "Name" | Select-Object Value -expand Value
-    
+        $InstanceIP = $Instance | Select-Object -ExpandProperty PrivateIpAddress
+  
         $InstancesObject += [pscustomobject][ordered]@{
             InstanceId = $Instance.InstanceId
             InstanceName = $InstanceName
+            InstanceIP = $InstanceIP
         }
     }
     return $InstancesObject | sort-object InstanceName
-}
+  }
